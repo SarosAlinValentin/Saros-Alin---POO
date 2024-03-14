@@ -1,0 +1,80 @@
+------CreditOrganizer.cpp
+
+#include "pch.h"
+#include "stdafx.h"
+#include "CreditCardAccount.h"
+#using <mscorlib.dll>
+using namespace System;
+
+void CreditCardAccount::SetCreditLimit(double amount)
+{
+	creditLimit = amount;
+}
+
+bool CreditCardAccount::MakePurchase(double amount)
+{
+	if (currentBalance + amount > creditLimit)
+	{
+		return false;
+	}
+	else
+	{
+		currentBalance += amount;
+		return true;
+	}
+}
+
+void CreditCardAccount::MakeRepayment(double amount)
+{
+	currentBalance -= amount;
+}
+
+void CreditCardAccount::PrintStatement()
+{
+	Console::Write("Current balance: ");
+	Console::WriteLine(currentBalance);
+}
+
+long CreditCardAccount::GetAccountNumber()
+{
+	return accountNumber;
+}
+
+CreditCardAccount::CreditCardAccount(long number, double limit)
+{
+	accountNumber = number;
+	creditLimit = limit;
+	currentBalance = 0.0;
+}
+
+int main(array<System::String^>^ args)
+{
+    CreditCardAccount^ myAccount;
+    myAccount = gcnew CreditCardAccount(12345, 2500);
+    myAccount->SetCreditLimit(1000);
+    myAccount->MakePurchase(1000);
+    myAccount->MakeRepayment(700);
+    myAccount->PrintStatement();
+    long num = myAccount->GetAccountNumber();
+    Console::Write("Account number: ");
+    Console::WriteLine(num);
+}
+
+------CreditCardAccount.h
+
+ref class CreditCardAccount
+{
+public:
+	void SetCreditLimit(double amount);
+	bool MakePurchase(double amount);
+	void MakeRepayment(double amount);
+	void PrintStatement();
+	long GetAccountNumber();
+	CreditCardAccount(long number, double limit);
+private:
+	long accountNumber;
+	double currentBalance;
+	double creditLimit;
+};
+
+------stdafx.h
