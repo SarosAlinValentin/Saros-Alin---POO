@@ -1,0 +1,36 @@
+#include "pch.h"
+
+using namespace System;
+
+class Client {
+
+public:
+    char nume[20];
+    double PretCamera;
+    double NumarZile;
+
+    Client( string n, double p, double z ) {
+
+        nume = n;
+        PretCamera = p;
+        NumarZile = z;
+    }
+
+    double CalculPretCazare(PretCamera, NumarZile) {
+    
+         return PretCamera * NumarZile;
+    }
+
+    double AratareBon(nume, PretCamera, NumarZile{
+
+        cout << "Clientul" << nume << " are de platit " << PretCamera * NumarZile << " Lei pentru " << NumarZile << " zile.";
+
+        }
+};
+
+int main(array<System::String ^> ^args)
+{
+    Client c1("Marcel", 600, 3);
+    Client c2("Marinel", 430, 5);
+    Client.AratareBon(c1.nume, c1.PretCamera, c1.NumarZile);
+}
